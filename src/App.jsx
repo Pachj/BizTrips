@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-import "./App.css";
-//import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./Footer";
-import Header from "./Header";
-import Spinner from "./Spinner";
-import useFetch from "./services/useFetch";
+import {Route, Routes} from "react-router-dom";
+import Overview from "./Overview";
+import {useState} from "react";
+import MyTripList from "./MyTripList";
+
+// TODO: Trip component
 
 export default function App() {
-  const [month, setMonth] = useState("");
+  const [plannedTrips, setPlannedTrips] = useState([]);
 
-  const { data: trips, loading: loadingTrips, error: errorTrips } = useFetch(
-    "trips"
-  );
-  const months = ["Idle", "Jan", "Feb", "March", "April", "Mai", "June"];
-
-  function renderTrip(t) {
+  const renderTrip = (t, addTripButton)  => {
     return (
       <div className="product" key={t.id}>
         <figure>
@@ -30,9 +24,15 @@ export default function App() {
             </div>
             <p>{t.description}</p>
             <div>
-              <button type="button" disabled>
-                Add to Triplist
-              </button>
+              {addTripButton === true ? (
+                <button type="button" onClick={() => {setPlannedTrips([...plannedTrips, t])}}>
+                  Add to my Triplist
+                </button>
+              ) : (
+                <button type="button" onClick={() => {removeTripFromTripList(t)}}>
+                  Remove from my Triplist
+                </button>
+              )}
             </div>
           </figcaption>
 
@@ -41,54 +41,24 @@ export default function App() {
       </div>
     );
   }
-  // if month selected then filter the trips from month === month
-  const filteredTrips = month
-    ? trips.filter((t) => t.startTrip[1] === parseInt(month))
-    : trips;
 
-  // if error then throw the errror
-  if (errorTrips) throw errorTrips;
-  if (loadingTrips) return <Spinner />;
-  // shorthand for react fragment
+  const removeTripFromTripList = (t) => {
+    let tmpPlannedTrips = [];
+
+    plannedTrips.forEach((tt) => {
+      if (tt.id !== t.id) {
+        tmpPlannedTrips.push(tt);
+      }
+    })
+
+    setPlannedTrips(tmpPlannedTrips);
+  }
+
   return (
-    <>
-
-      <div>
-        <Header />
-        <main>
-          <section id="filters">
-            <label htmlFor="month">Filter by Month:</label>
-            <select
-              id="month"
-              value={month} // controlled component
-              onChange={(e) => {
-                //debugger;
-                setMonth(e.target.value);
-              }}
-            >
-              <option value="">All Months</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">Mai</option>
-              <option value="6">June</option>
-            </select>
-            {month && (
-              <h2>
-                Found {filteredTrips.length}
-                {filteredTrips.length > 1 ? " trips" : " trip"} for the month of
-                {" " + months[month]}
-              </h2>
-            )}
-
-          </section>
-          <section id="products">{filteredTrips.map(renderTrip)}</section>
-
-        </main>
-
-      </div>
-      <Footer />
-    </>
+    <Routes>
+      <Route exact path="/home" element={<Overview renderTrip={renderTrip}/>} />
+      <Route exact path="/" element={<Overview renderTrip={renderTrip} />} />
+      <Route exact path="/tripList" element={<MyTripList plannedTrips={plannedTrips} setPlannedTrips={setPlannedTrips} renderTrip={renderTrip} />}/>
+    </Routes>
   );
 }
