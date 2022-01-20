@@ -2,6 +2,7 @@ import {Route, Routes} from "react-router-dom";
 import Overview from "./Overview";
 import {useState} from "react";
 import MyTripList from "./MyTripList";
+import CreateTrip from "./CreateTrip";
 
 // TODO: Trip component
 
@@ -59,6 +60,7 @@ export default function App() {
       <Route exact path="/home" element={<Overview renderTrip={renderTrip}/>} />
       <Route exact path="/" element={<Overview renderTrip={renderTrip} />} />
       <Route exact path="/tripList" element={<MyTripList plannedTrips={plannedTrips} setPlannedTrips={setPlannedTrips} renderTrip={renderTrip} />}/>
+      <Route exact path="/createTrip" element={<CreateTrip  />}/>
     </Routes>
   );
 }
