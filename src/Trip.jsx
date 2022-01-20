@@ -1,6 +1,7 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {saveTripInTripList} from "./services/saveTripInTripList";
 import {removeTripFromTripList} from "./services/removeTripFromTripList";
+import {Button} from "@mui/material";
 
 export default function Trip(props) {
   const [addTripButton, setAddTripButton] = useState(props.addTripButton);
@@ -21,18 +22,19 @@ export default function Trip(props) {
           <p>{props.trip.description}</p>
           <div>
             {addTripButton === true ? (
-              <button type="button" onClick={() => {
+              <Button variant="contained" onClick={() => {
                 saveTripInTripList(props.trip.id).then(() => setAddTripButton(false));
               }}>
                 Add to my Triplist
-              </button>
+              </Button>
             ) : (
-              <button type="button" onClick={() => {
+              <Button variant="contained" onClick={() => {
                 removeTripFromTripList(props.trip.id).then(() => setAddTripButton(true));
               }}>
                 Remove from my Triplist
-              </button>
+              </Button>
             )}
+            <Button variant="contained" href={`/editTrip?id=${props.trip.id}`}>Edit</Button>
           </div>
         </figcaption>
       </figure>
