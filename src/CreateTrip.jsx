@@ -2,9 +2,7 @@ import {Button, TextField} from "@mui/material";
 import {useState} from "react";
 import {saveTrip} from "./services/saveTrip";
 
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
-
-export default function CreateTrip(props) {
+export default function CreateTrip() {
   const [tripTitle, setTripTitle] = useState('');
   const [tripDescription, setTripDescription] = useState('');
   const [startDate, setStartDate] = useState('');
