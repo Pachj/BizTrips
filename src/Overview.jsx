@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Spinner from "./Spinner";
 import useFetch from "./services/useFetch";
+import {Link} from "react-router-dom";
+import {Button} from "@mui/material";
 
 export default function Overview(props) {
   const [month, setMonth] = useState("");
@@ -63,7 +65,7 @@ export default function Overview(props) {
             <section id="products">{filteredTrips.map((t) => {return props.renderTrip(t, true)})}</section>
             {/*<button onClick={}>Add new Trip</button>*/}
         </main>
-        )}
+        <Button variant="contained" href="/createTrip">Create New Trip</Button>
       </div>
       <Footer />
     </>
