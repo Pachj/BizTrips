@@ -70,6 +70,9 @@ header li {
 #products {
   display: flex;
   justify-content: center;
+  column-gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 2rem;
 }
 
 .product {
@@ -77,6 +80,8 @@ header li {
   align-items: flex-end;
   max-width: 350px;
   text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
 }
 
 #cart img {
@@ -221,4 +226,12 @@ form > div {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
 }
