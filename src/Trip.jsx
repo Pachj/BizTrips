@@ -1,7 +1,9 @@
 import {useState} from "react";
+import {saveTripInTripList} from "./services/saveTripInTripList";
+import {removeTripFromTripList} from "./services/removeTripFromTripList";
 
 export default function Trip(props) {
-  const [addTripButton, setAddTripButton] = useState(props.addTripButton === undefined);
+  const [addTripButton, setAddTripButton] = useState(props.addTripButton);
 
   return (
     <div className="product" key={props.trip.id}>
@@ -10,7 +12,7 @@ export default function Trip(props) {
           <img src={"images/items/" + props.trip.id + ".jpg"} alt="name " />
         </div>
         <figcaption>
-          <a href="#. . . ">{props.trip.title}</a>
+          <p>{props.trip.title}</p>
           <div>
               <span>
                 {props.trip.startTrip[2] + "-" + props.trip.startTrip[1] + "-" + props.trip.startTrip[0]}
@@ -20,15 +22,13 @@ export default function Trip(props) {
           <div>
             {addTripButton === true ? (
               <button type="button" onClick={() => {
-                props.setPlannedTrips([...props.plannedTrips, props.trip]);
-                setAddTripButton(false);
+                saveTripInTripList(props.trip.id).then(() => setAddTripButton(false));
               }}>
                 Add to my Triplist
               </button>
             ) : (
               <button type="button" onClick={() => {
-                props.removeTripFromTripList(props.trip)
-                setAddTripButton(true);
+                removeTripFromTripList(props.trip.id).then(() => setAddTripButton(true));
               }}>
                 Remove from my Triplist
               </button>

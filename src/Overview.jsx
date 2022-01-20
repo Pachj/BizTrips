@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./Footer";
@@ -7,9 +7,11 @@ import Spinner from "./Spinner";
 import useFetch from "./services/useFetch";
 import {Button} from "@mui/material";
 import Trip from "./Trip";
+import {getTripList} from "./services/getTripList";
 
 export default function Overview(props) {
   const [month, setMonth] = useState("");
+  const [tripListIds, setTripListIds] = useState([]);
 
   const { data: trips, loading: loadingTrips, error: errorTrips } = useFetch(
     "trips"
@@ -20,6 +22,13 @@ export default function Overview(props) {
   const filteredTrips = month
     ? trips.filter((t) => t.startTrip[1] === parseInt(month))
     : trips;
+
+  useEffect(() => {
+      getTripList().then((trips) => {
+        setTripListIds(trips.trips);
+      });
+    },
+    [])
 
   // if error then throw the errror
   if (errorTrips) throw errorTrips;
@@ -62,8 +71,8 @@ export default function Overview(props) {
                 </h2>
               )}
             </section>
-            <section id="products">{filteredTrips.map((t) => {return <Trip trip={t} plannedTrips={props.plannedTrips}
-              setPlannedTrips={props.setPlannedTrips} removeTripFromTripList={props.removeTripFromTripList}/>})}</section>
+            <section id="products">{filteredTrips.map((t) => {return <Trip key={`trip-${t.id}`} trip={t}
+              addTripButton={!tripListIds.includes(t.id)}/>})}</section>
             {/*<button onClick={}>Add new Trip</button>*/}
         </main>
         <Button variant="contained" href="/createTrip">Create New Trip</Button>
