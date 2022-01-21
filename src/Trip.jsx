@@ -10,7 +10,7 @@ export default function Trip(props) {
     <div className="product" key={props.trip.id}>
       <figure>
         <div>
-          <img src={"images/items/" + props.trip.id + ".jpg"} alt="name " />
+          <img src={props.trip.id <= 3 ? "images/items/" + props.trip.id + ".jpg" : "images/items/placeholder.png"} alt="name " />
         </div>
         <figcaption>
           <p>{props.trip.title}</p>
