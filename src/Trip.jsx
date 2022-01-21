@@ -20,7 +20,7 @@ export default function Trip(props) {
               </span>
           </div>
           <p>{props.trip.description}</p>
-          <div>
+          <div className="buttonBox">
             {addTripButton === true ? (
               <Button variant="contained" onClick={() => {
                 saveTripInTripList(props.trip.id).then(() => setAddTripButton(false));

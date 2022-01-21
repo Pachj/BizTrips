@@ -75,7 +75,9 @@ export default function Overview(props) {
               addTripButton={!tripListIds.includes(t.id)}/>})}</section>
             {/*<button onClick={}>Add new Trip</button>*/}
         </main>
-        <Button variant="contained" href="/createTrip">Create New Trip</Button>
+        <div className="centered bottomMargin">
+          <Button variant="contained" href="/createTrip">Create New Trip</Button>
+        </div>
       </div>
       <Footer />
     </>
