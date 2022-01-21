@@ -1,10 +1,11 @@
-import {Button, TextField} from "@mui/material";
+import {Button, Modal, TextField} from "@mui/material";
 import React, {useState} from "react";
 import {saveTrip} from "./services/saveTrip";
 import BasicDatePicker from "./BasicDatePicker";
 import {format} from "date-fns";
 import Header from "./Header";
 import Footer from "./Footer";
+import BasicModal from "./BasicModal";
 
 export default function CreateTrip() {
   const [tripTitle, setTripTitle] = useState('');
@@ -15,6 +16,10 @@ export default function CreateTrip() {
   const [formattedEndDate, setFormattedEndDate] = useState('');
 
   const [confirmationScreen, setConfirmationScreen] = useState(false);
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
 
   const setStartDates = (dateFnsDate) => {
     setStartDate(dateFnsDate);
@@ -65,8 +70,13 @@ export default function CreateTrip() {
           </div>
           <div className={'buttonBox'}>
             <Button variant={'contained'} onClick={() => setConfirmationScreen(false)}>back</Button>
-            <Button variant={'contained'} onClick={() => saveTrip(tripTitle, tripDescription, formattedStartDate, formattedEndDate)}>confirm</Button>
+            <Button variant={'contained'} onClick={() => {
+              saveTrip(tripTitle, tripDescription, formattedStartDate, formattedEndDate).then(() => {
+                handleOpenModal();
+              })
+            }}>confirm</Button>
           </div>
+          <BasicModal modalOpen={modalOpen} handleCloseModal={handleCloseModal} text="The trip has been saved."/>
         </div>
       )}
       <Footer />

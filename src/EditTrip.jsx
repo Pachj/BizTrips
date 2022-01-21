@@ -7,6 +7,7 @@ import BasicDatePicker from "./BasicDatePicker";
 import {deleteTrip} from "./services/deleteTrip";
 import {updateTrip} from "./services/updateTrip";
 import Header from "./Header";
+import BasicModal from "./BasicModal";
 
 export default function EditTrip(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +16,14 @@ export default function EditTrip(props) {
   const [tripDescription, setTripDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const [updateModalOpen, setUpdateModalOpen] = React.useState(false);
+  const handleUpdateOpenModal = () => setUpdateModalOpen(true);
+  const handleUpdateCloseModal = () => setUpdateModalOpen(false);
+
+  const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
+  const handleDeleteOpenModal = () => setDeleteModalOpen(true);
+  const handleDeleteCloseModal = () => setDeleteModalOpen(false);
 
   useEffect(() => {
       getCertainTrip(searchParams.get('id')).then((trip) => {
@@ -52,9 +61,19 @@ export default function EditTrip(props) {
         </div>
         <div className={'buttonBox'}>
           <Button variant="contained" color="warning" href="/home">Discard changes</Button>
-          <Button variant="contained" onClick={() => updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate)}>Save changes</Button>
-          <Button variant="contained" color="error" onClick={() => deleteTrip(searchParams.get('id'))}>Delete trip</Button>
+          <Button variant="contained" onClick={() => {
+            updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate).then(() => {
+              handleUpdateOpenModal();
+            })
+          }}>Save changes</Button>
+          <Button variant="contained" color="error" onClick={() => {
+            deleteTrip(searchParams.get('id')).then(() => {
+              handleDeleteOpenModal();
+            })
+          }}>Delete trip</Button>
         </div>
+        <BasicModal modalOpen={updateModalOpen} handleCloseModal={handleUpdateCloseModal} text="The trip has been updated."/>
+        <BasicModal modalOpen={deleteModalOpen} handleCloseModal={handleDeleteCloseModal} text="The trip has been deleted."/>
       </div>
     </>
   )
