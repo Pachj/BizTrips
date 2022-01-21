@@ -6,6 +6,7 @@ import {Button, TextField} from "@mui/material";
 import BasicDatePicker from "./BasicDatePicker";
 import {deleteTrip} from "./services/deleteTrip";
 import {updateTrip} from "./services/updateTrip";
+import Header from "./Header";
 
 export default function EditTrip(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,18 +32,30 @@ export default function EditTrip(props) {
 
   if (tripTitle === '') return <Spinner />;
   return (
-    <div>
-      <TextField label={'Trip title'} variant={'outlined'} value={tripTitle}
-               onChange={(e) => setTripTitle(e.target.value)}/>
-      <TextField label={'Trip description'} variant={'outlined'} value={tripDescription}
-               onChange={(e) => setTripDescription(e.target.value)}/>
-      <BasicDatePicker value={startDate} setValue={setStartDate} label="Start date" />
-      <BasicDatePicker value={endDate} setValue={setEndDate} label="End date" />
-      <div>
-        <Button variant="contained" color="warning" href="/home">Discard changes</Button>
-        <Button variant="contained" onClick={() => updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate)}>Save changes</Button>
-        <Button variant="contained" color="error" onClick={() => deleteTrip(searchParams.get('id'))}>Delete trip</Button>
+    <>
+      <Header />
+      <div className={'centered columnGap rowGap bottomMargin'}>
+        <h2 className={'fullWidth'}>Edit Trip</h2>
+        <div className={'fullWidth'}>
+          <TextField label={'Trip title'} variant={'outlined'} value={tripTitle}
+                 onChange={(e) => setTripTitle(e.target.value)} sx={{width: 230}} />
+        </div>
+        <div className={'fullWidth'}>
+          <TextField label={'Trip description'} variant={'outlined'} value={tripDescription}
+                 onChange={(e) => setTripDescription(e.target.value)} sx={{width: 230}} />
+        </div>
+        <div className={'fullWidth'}>
+          <BasicDatePicker value={startDate} setValue={setStartDate} label="Start date" />
+        </div>
+        <div className={'fullWidth'}>
+          <BasicDatePicker value={endDate} setValue={setEndDate} label="End date" />
+        </div>
+        <div className={'buttonBox'}>
+          <Button variant="contained" color="warning" href="/home">Discard changes</Button>
+          <Button variant="contained" onClick={() => updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate)}>Save changes</Button>
+          <Button variant="contained" color="error" onClick={() => deleteTrip(searchParams.get('id'))}>Delete trip</Button>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
