@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {Button} from "@mui/material";
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            {<Link to={'/tripList'}>My Trips</Link>}
+            {<Button variant={"contained"} href={'/tripList'}>My Trips</Button>}
           </li>
         </ul>
       </nav>
