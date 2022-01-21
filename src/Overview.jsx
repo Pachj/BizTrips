@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Spinner from "./Spinner";
 import useFetch from "./services/useFetch";
-import {Button} from "@mui/material";
+import {Button, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import Trip from "./Trip";
 import {getTripList} from "./services/getTripList";
 
@@ -40,29 +40,35 @@ export default function Overview(props) {
         <Header />
           <main>
             <section id="filters">
-              <label htmlFor="month">Filter by Month:</label>
-              <select
-                id="month"
-                value={month} // controlled component
-                onChange={(e) => {
-                  //debugger;
-                  setMonth(e.target.value);
-                }}
-              >
-                <option value="">All Months</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">Mai</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-              </select>
+              <FormControl>
+                <InputLabel id={'monthFilter'}>Filter by Month</InputLabel>
+                <Select
+                  labelId={'monthFilter'}
+                  value={month}
+                  onChange={(e) => {
+                    //debugger;
+                    setMonth(e.target.value);
+                  }}
+                  defaultValue=""
+                  MenuProps={{ disableScrollLock: true }}
+                  sx={{width: 200}}
+                  variant={'standard'}
+                >
+                  <MenuItem value="">All Months</MenuItem>
+                  <MenuItem value="1">January</MenuItem>
+                  <MenuItem value="2">February</MenuItem>
+                  <MenuItem value="3">March</MenuItem>
+                  <MenuItem value="4">April</MenuItem>
+                  <MenuItem value="5">Mai</MenuItem>
+                  <MenuItem value="6">June</MenuItem>
+                  <MenuItem value="7">July</MenuItem>
+                  <MenuItem value="8">August</MenuItem>
+                  <MenuItem value="9">September</MenuItem>
+                  <MenuItem value="10">October</MenuItem>
+                  <MenuItem value="11">November</MenuItem>
+                  <MenuItem value="12">December</MenuItem>
+                </Select>
+              </FormControl>
               {month && (
                 <h2>
                   Found {filteredTrips.length}
