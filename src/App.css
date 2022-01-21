@@ -242,6 +242,8 @@ form > div {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .bottomMargin {
@@ -250,4 +252,16 @@ form > div {
 
 #filters {
   margin-left: 20px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.columnGap {
+  column-gap: 2rem;
+}
+
+.rowGap {
+  row-gap: 2rem;
 }
