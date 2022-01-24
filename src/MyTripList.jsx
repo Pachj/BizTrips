@@ -26,9 +26,10 @@ export default function MyTripList() {
     <>
       <Header />
       <main>
-        <section id="products">{trips.filter((trip) => {return tripListIds.includes(trip.id)}).map((t) => {
+        {tripListIds.length === 0 ? (<h2>You have no trips on you're trip list</h2>) :
+          (<section id="products">{trips.filter((trip) => {return tripListIds.includes(trip.id)}).map((t) => {
           return <Trip key={`trip-${t.id}`} trip={t} addTripButton={!tripListIds.includes(t.id)}/>})}
-        </section>
+        </section>)}
       </main>
     </>
   )
