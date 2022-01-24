@@ -16,7 +16,7 @@ export default function Overview(props) {
   const { data: trips, loading: loadingTrips, error: errorTrips } = useFetch(
     "trips"
   );
-  const months = ["Idle", "Jan", "Feb", "March", "April", "Mai", "June", "July", "August", "September", "October", "November", "December"];
+  const months = ["Idle", "January", "February", "March", "April", "Mai", "June", "July", "August", "September", "October", "November", "December"];
 
   // if month selected then filter the trips from month === month
   const filteredTrips = month
