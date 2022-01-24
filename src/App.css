@@ -266,3 +266,11 @@ form > div {
 .rowGap {
   row-gap: 2rem;
 }
+
+.sumValue {
+  margin-left: 2rem;
+}
+
+.buttonBoxMargin {
+  margin: 1.33rem;
+}

@@ -56,19 +56,26 @@ export default function CreateTrip() {
         </div>
       ) : (
         <div className={'centered columnGap bottomMargin'}>
-          <div className={'fullWidth'}>
-            <p>Trip title: {tripTitle}</p>
-          </div>
-          <div className={'fullWidth'}>
-            <p>Trip description: {tripDescription}</p>
-          </div>
-          <div className={'fullWidth'}>
-            <p>Trip start date: {formattedStartDate}</p>
-          </div>
-          <div className={'fullWidth'}>
-            <p>Trip end date: {formattedEndDate}</p>
-          </div>
-          <div className={'buttonBox'}>
+          <h2 className={'fullWidth'}>Summary</h2>
+          <table>
+            <tr>
+              <td><h4>Trip title</h4></td>
+              <td><p className={'sumValue'}>{tripTitle}</p></td>
+            </tr>
+            <tr>
+              <td><h4>Trip description</h4></td>
+              <td><p className={'sumValue'}>{tripDescription}</p></td>
+            </tr>
+            <tr>
+              <td><h4>Trip start date</h4></td>
+              <td><p className={'sumValue'}>{formattedStartDate}</p></td>
+            </tr>
+            <tr>
+              <td><h4>Trip end date</h4></td>
+              <td><p className={'sumValue'}>{formattedEndDate}</p></td>
+            </tr>
+          </table>
+          <div className={'buttonBox fullWidth buttonBoxMargin'}>
             <Button variant={'contained'} onClick={() => setConfirmationScreen(false)}>back</Button>
             <Button variant={'contained'} onClick={() => {
               saveTrip(tripTitle, tripDescription, formattedStartDate, formattedEndDate).then(() => {
