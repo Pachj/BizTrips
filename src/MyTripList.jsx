@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {getTripList} from "./services/getTripList";
 import useFetch from "./services/useFetch";
 import Spinner from "./Spinner";
+import Footer from "./Footer";
 
 export default function MyTripList() {
   const [tripListIds, setTripListIds] = useState([]);
@@ -31,6 +32,7 @@ export default function MyTripList() {
           return <Trip key={`trip-${t.id}`} trip={t} addTripButton={!tripListIds.includes(t.id)}/>})}
         </section>)}
       </main>
+      <Footer />
     </>
   )
 }

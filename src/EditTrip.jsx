@@ -8,6 +8,7 @@ import {deleteTrip} from "./services/deleteTrip";
 import {updateTrip} from "./services/updateTrip";
 import Header from "./Header";
 import BasicModal from "./BasicModal";
+import Footer from "./Footer";
 
 export default function EditTrip(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -75,6 +76,7 @@ export default function EditTrip(props) {
         <BasicModal modalOpen={updateModalOpen} handleCloseModal={handleUpdateCloseModal} text="The trip has been updated."/>
         <BasicModal modalOpen={deleteModalOpen} handleCloseModal={handleDeleteCloseModal} text="The trip has been deleted."/>
       </div>
+      <Footer />
     </>
   )
 }
