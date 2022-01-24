@@ -61,16 +61,16 @@ export default function EditTrip(props) {
         </div>
         <div className={'buttonBox'}>
           <Button variant="contained" color="warning" href="/home">Discard changes</Button>
-          <Button variant="contained" onClick={() => {
-            updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate).then(() => {
-              handleUpdateOpenModal();
-            })
-          }}>Save changes</Button>
           <Button variant="contained" color="error" onClick={() => {
             deleteTrip(searchParams.get('id')).then(() => {
               handleDeleteOpenModal();
             })
           }}>Delete trip</Button>
+          <Button variant="contained" onClick={() => {
+            updateTrip(searchParams.get('id'), tripTitle, tripDescription, startDate, endDate).then(() => {
+              handleUpdateOpenModal();
+            })
+          }}>Save changes</Button>
         </div>
         <BasicModal modalOpen={updateModalOpen} handleCloseModal={handleUpdateCloseModal} text="The trip has been updated."/>
         <BasicModal modalOpen={deleteModalOpen} handleCloseModal={handleDeleteCloseModal} text="The trip has been deleted."/>
