@@ -5,13 +5,9 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export async function updateTrip(id, tripTitle, tripDescription, startDate, endDate) {
   if (isValid(startDate)) {
-    console.log('start');
-    console.log(startDate);
     startDate = format(startDate, 'yyyy-MM-dd');
   }
   if (isValid(endDate)) {
-    console.log('end');
-    console.log(endDate);
     endDate = format(endDate, 'yyyy-MM-dd');
   }
 
