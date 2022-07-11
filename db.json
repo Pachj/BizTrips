@@ -32,35 +32,23 @@
       ]
     },
     {
-      "id": 2,
-      "title": "BT02",
+      "title": "BT023",
       "description": "Santa Clara Halley on new Server/IOT/Client",
       "startTrip": [
         2021,
         6,
-        23,
-        9,
+        24,
+        0,
         0
       ],
       "endTrip": [
         2021,
         6,
-        27,
-        16,
-        56
+        7,
+        0,
+        0
       ],
-      "meetings": [
-        {
-          "id": 3,
-          "title": "One Conference",
-          "description": "HandsOn on One Conference"
-        },
-        {
-          "id": 4,
-          "title": "One Conference",
-          "description": "Key Note on One Conference"
-        }
-      ]
+      "id": 2
     },
     {
       "id": 3,
@@ -87,9 +75,68 @@
           "description": "Key Note on One Conference"
         }
       ]
+    },
+    {
+      "title": "sdf",
+      "description": "sdf",
+      "startTrip": [
+        2022,
+        1,
+        2,
+        0,
+        0
+      ],
+      "endTrip": [
+        2022,
+        1,
+        28,
+        0,
+        0
+      ],
+      "id": 6
+    },
+    {
+      "title": "Testtrip",
+      "description": "testtrip",
+      "startTrip": [
+        2022,
+        1,
+        25,
+        0,
+        0
+      ],
+      "endTrip": [
+        2022,
+        1,
+        28,
+        0,
+        0
+      ],
+      "id": 7
+    },
+    {
+      "title": "etsets",
+      "description": "dsgiuhpiuhdgyu",
+      "startTrip": [
+        2022,
+        1,
+        20,
+        0,
+        0
+      ],
+      "endTrip": [
+        2022,
+        1,
+        31,
+        0,
+        0
+      ],
+      "id": 8
     }
   ],
   "tripList": {
-    "trips": []
+    "trips": [
+      1
+    ]
   }
 }
